@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DepartmentController;
 
 /*
@@ -28,3 +29,11 @@ Route::post('/department/create', [DepartmentController::class, 'store'])->name(
 Route::get('/department/{id}', [DepartmentController::class, 'edit'])->name('departments-edit');
 Route::patch('/department/{id}', [DepartmentController::class, 'update'])->name('departments-update');
 Route::delete('/department/{id}', [DepartmentController::class, 'destroy'])->name('departments-destroy');
+
+
+Route::get('/role', [RoleController::class, 'index'])->name('roles-index');
+Route::get('/role/create', [RoleController::class, 'create'])->name('roles-create');
+Route::post('/role/create', [RoleController::class, 'store'])->name('roles-store');
+Route::get('/role/{id}', [RoleController::class, 'edit'])->name('roles-edit');
+Route::patch('/role/{id}', [RoleController::class, 'update'])->name('roles-update');
+Route::delete('/role/{id}', [RoleController::class, 'destroy'])->name('roles-destroy');

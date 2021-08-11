@@ -16,7 +16,7 @@
                     {{session('message')}}
                 </div>
             @endif
-                <form action="{{route('roles.store')}}" method="post">@csrf
+                <form action="{{route('roles-store')}}" method="post">@csrf
 
               <div class="card">
                 <div class="card-header">Create New Role</div>

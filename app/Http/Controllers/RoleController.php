@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -13,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::get();
+        return view('admin.role.index', ['roles'=>$roles]);
     }
 
     /**
@@ -23,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.role.create');
     }
 
     /**
@@ -34,7 +36,17 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'=>'required|string|min:3',
+            'description'=>'required|string|min:3',
+        ]);
+
+        $data = Role::create([
+            'name'=>$request->name,
+            'description'=>$request->description
+        ]);
+
+        return \redirect()->back()->with('message', 'Successful Added New Role');
     }
 
     /**
@@ -56,7 +68,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        return view('admin.role.edit', ['role'=>$role]);
     }
 
     /**
@@ -68,7 +81,18 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::find($id);
+
+        $this->validate($request,[
+            'name'=>'required|string|min:3',
+            'description'=>'required|string|min:3',
+        ]);
+
+        $role->name = $request->name;
+        $role->description = $request->description;
+
+        $role->save();
+        return \redirect(route('roles-index'))->with('message', 'Successful Updated Role');
     }
 
     /**
@@ -79,6 +103,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+        $role->delete();
+        return \redirect(route('roles-index'))->with('message', 'Successful Deleted Role');
     }
 }
