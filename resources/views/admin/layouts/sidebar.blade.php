@@ -84,18 +84,52 @@
                                     <a class="nav-link" href="{{route('leaves-index')}}">View
                                         permission</a>
                                     @endif
-                                   
+
                                     <a class="nav-link" href="{{route('leaves-create')}}">Create
                                         permission</a>
-                                 
+
                                 </nav>
 
                             </div>
 
                         </nav>
                     </div>
+                    <a class="nav-link collapsed" href="{{route('leaves-index')}}" data-toggle="collapse" data-target="#pagesCollapseLeaves" aria-expanded="false" aria-controls="pagesCollapseLeaves">
+                        <div class="sb-nav-link-icon"><i class="fas fa-pen"></i></div>Staff Leave
 
-                   
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="pagesCollapseLeaves" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            @if(isset(auth()->user()->role->permission['name']['leave']['can-list']))
+                            <a class="nav-link" href="{{route('leaves-index')}}">View
+                                permission</a>
+                            @endif
+
+                            <a class="nav-link" href="{{route('leaves-create')}}">Create
+                                permission</a>
+
+                        </nav>
+
+                    </div>
+                    <a class="nav-link collapsed" href="{{route('roles-index')}}" data-toggle="collapse" data-target="#pagesCollapsenotice" aria-expanded="false" aria-controls="pagesCollapsenotice"><i class="fas fa-book"></i>&nbsp;Staff Notice
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+
+                    <div class="collapse" id="pagesCollapsenotice" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            @if(isset(auth()->user()->role->permission['name']['notice']['can-list']))
+                            <a class="nav-link" href="{{route('notices-index')}}">View
+                                Notice</a>
+                            @endif
+                            @if(isset(auth()->user()->role->permission['name']['notice']['can-add']))
+                            <a class="nav-link" href="{{route('notices-create')}}">Create
+                                leave</a>
+                            @endif
+                        </nav>
+
+                    </div>
+
 
 
                 </div>

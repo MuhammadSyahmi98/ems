@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
 
@@ -66,6 +67,13 @@ Route::group(['middleware'=>['auth', 'has.permission']], function(){
     Route::patch('/leave/{id}', [LeaveController::class, 'update'])->name('leaves-update');
     Route::delete('/leave/{id}', [LeaveController::class, 'destroy'])->name('leaves-destroy');
     Route::post('/accept-reject-leave/{id}', [LeaveController::class, 'acceptReject'])->name('accept-reject');
+
+    Route::get('/notice', [NoticeController::class, 'index'])->name('notices-index');
+    Route::get('/notice/create', [NoticeController::class, 'create'])->name('notices-create');
+    Route::post('/notice/create', [NoticeController::class, 'store'])->name('notices-store');
+    Route::get('/notice/{id}', [NoticeController::class, 'edit'])->name('notices-edit');
+    Route::patch('/notice/{id}', [NoticeController::class, 'update'])->name('notices-update');
+    Route::delete('/notice/{id}', [NoticeController::class, 'destroy'])->name('notices-destroy');
 });
 
 
