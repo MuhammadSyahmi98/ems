@@ -7,7 +7,7 @@
 
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">All Roles</li>
+                <li class="breadcrumb-item active" aria-current="page">All Permissions</li>
               </ol>
             </nav>
             @if(session('message'))
@@ -21,34 +21,37 @@
                 <tr>
                     <th>SN</th>
                     <th>Name</th>
-                    <th>Description</th>
                     <th>Edit</th>
                     <th>Delete</th>
-                    
+            
+                     
                 </tr>
             </thead>
            
             <tbody>
-                @if(count($roles)>0)
-                @foreach($roles as $key=>$role)
+                @if(count($permissions)>0)
+                @foreach($permissions as $key=>$permission)
                 <tr>
                     <td>{{$key+1}}</td>
-                    <td>{{$role->name}}</td>
-                    <td>{{$role->description}}</td>
+                    <td>{{$permission->role->name}}</td>
+                 
                     <td>
-                    @if (isset(auth()->user()->role->permission['name']['role']['can-edit']))
-                        <a href="{{route('roles-edit',[$role->id])}}"><i class="fas fa-edit"></i></a></td>
-                    @endif
-                    <td>
-                    @if (isset(auth()->user()->role->permission['name']['role']['can-edit']))
-                    <a href="#" data-toggle="modal" data-target="#exampleModal{{$role->id}}">
+                      @if(isset(auth()->user()->role->permission['name']['permission']['can-edit']))
+                        <a href="{{route('permissions-edit',[$permission->id])}}"><i class="fas fa-edit"></i></a>@endif</td>
+                   
+                      <td>
+                        @if(isset(auth()->user()->role->permission['name']['permission']['can-delete']))
+                        <a href="#" data-toggle="modal" data-target="#exampleModal{{$permission->id}}">
                         <i style="color: red;" class="fas fa-trash"></i>
-                    @endif
+                        @endif
                     </a>
+                      </td>
+                       
+                    
                     <!-- Modal -->
-                <div class="modal fade" id="exampleModal{{$role->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal{{$permission->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
-                    <form action="{{route('roles-destroy',[$role->id])}}" method="post">@csrf
+                    <form action="{{route('permissions-destroy',[$permission->id])}}" method="post">@csrf
                         {{method_field('DELETE')}}
                     <div class="modal-content">
                       <div class="modal-header">
@@ -58,6 +61,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
+                      
                         Do you want to delete?
                       </div>
                       <div class="modal-footer">
@@ -77,7 +81,7 @@
                 </tr>
                 @endforeach
                 @else
-                <td>No roles to display</td>
+                <td>No permissions to display</td>
                 @endif
                
                

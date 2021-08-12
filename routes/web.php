@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,13 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/user/{id}', [UserController::class, 'edit'])->name('users-edit');
     Route::patch('/user/{id}', [UserController::class, 'update'])->name('users-update');
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('users-destroy');
+
+    Route::get('/permission', [PermissionController::class, 'index'])->name('permissions-index');
+    Route::get('/permission/create', [PermissionController::class, 'create'])->name('permissions-create');
+    Route::post('/permission/create', [PermissionController::class, 'store'])->name('permissions-store');
+    Route::get('/permission/{id}', [PermissionController::class, 'edit'])->name('permissions-edit');
+    Route::patch('/permission/{id}', [PermissionController::class, 'update'])->name('permissions-update');
+    Route::delete('/permission/{id}', [PermissionController::class, 'destroy'])->name('permissions-destroy');
 });
 
 
