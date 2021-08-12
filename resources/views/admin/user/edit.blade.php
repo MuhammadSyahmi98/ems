@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-group">
                         <label>Start date</label>
-                        <input type=""  id="datepicker" name="start_from" class="form-control @error('start_from') is-invalid @enderror" placeholder="dd-mm-yyyy" required="" value="{{$user->start_from}}" >
+                        <input type="date"  id="date" name="start_from" class="form-control @error('start_from') is-invalid @enderror" placeholder="dd-mm-yyyy" required="" value="{{$user->start_from}}" >
                          @error('start_from')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

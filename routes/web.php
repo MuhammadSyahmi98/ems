@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
 
@@ -57,6 +58,14 @@ Route::group(['middleware'=>['auth', 'has.permission']], function(){
     Route::get('/permission/{id}', [PermissionController::class, 'edit'])->name('permissions-edit');
     Route::patch('/permission/{id}', [PermissionController::class, 'update'])->name('permissions-update');
     Route::delete('/permission/{id}', [PermissionController::class, 'destroy'])->name('permissions-destroy');
+
+    Route::get('/leave', [LeaveController::class, 'index'])->name('leaves-index');
+    Route::get('/leave/create', [LeaveController::class, 'create'])->name('leaves-create');
+    Route::post('/leave/create', [LeaveController::class, 'store'])->name('leaves-store');
+    Route::get('/leave/{id}', [LeaveController::class, 'edit'])->name('leaves-edit');
+    Route::patch('/leave/{id}', [LeaveController::class, 'update'])->name('leaves-update');
+    Route::delete('/leave/{id}', [LeaveController::class, 'destroy'])->name('leaves-destroy');
+    Route::post('/accept-reject-leave/{id}', [LeaveController::class, 'acceptReject'])->name('accept-reject');
 });
 
 

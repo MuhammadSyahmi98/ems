@@ -75,6 +75,23 @@
 
                             </div>
 
+                            <a class="nav-link collapsed" href="{{route('leaves-index')}}" data-toggle="collapse" data-target="#pagesCollapseLeaves" aria-expanded="false" aria-controls="pagesCollapseLeaves">Leaves
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagesCollapseLeaves" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @if(isset(auth()->user()->role->permission['name']['leave']['can-list']))
+                                    <a class="nav-link" href="{{route('leaves-index')}}">View
+                                        permission</a>
+                                    @endif
+                                   
+                                    <a class="nav-link" href="{{route('leaves-create')}}">Create
+                                        permission</a>
+                                 
+                                </nav>
+
+                            </div>
+
                         </nav>
                     </div>
 
