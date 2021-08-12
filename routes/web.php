@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartmentController;
 
 /*
@@ -37,3 +38,12 @@ Route::post('/role/create', [RoleController::class, 'store'])->name('roles-store
 Route::get('/role/{id}', [RoleController::class, 'edit'])->name('roles-edit');
 Route::patch('/role/{id}', [RoleController::class, 'update'])->name('roles-update');
 Route::delete('/role/{id}', [RoleController::class, 'destroy'])->name('roles-destroy');
+
+Route::get('/user', [UserController::class, 'index'])->name('users-index');
+Route::get('/user/create', [UserController::class, 'create'])->name('users-create');
+Route::post('/user/create', [UserController::class, 'store'])->name('users-store');
+Route::get('/user/{id}', [UserController::class, 'edit'])->name('users-edit');
+Route::patch('/user/{id}', [UserController::class, 'update'])->name('users-update');
+Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('users-destroy');
+
+
