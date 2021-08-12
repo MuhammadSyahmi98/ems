@@ -22,7 +22,7 @@ use App\Http\Controllers\PermissionController;
 Auth::routes();
 
 
-Route::group(['middleware'=>'auth'], function(){
+Route::group(['middleware'=>['auth', 'has.permission']], function(){
     Route::get('/', function () {
         return view('welcome');
     });
