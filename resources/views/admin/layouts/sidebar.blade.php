@@ -129,6 +129,12 @@
                         </nav>
 
                     </div>
+                    @if(isset(auth()->user()->role->permission['name']['mail']['can-add']))
+                            <a class="nav-link" href="{{url('/mail')}}" style="font-size:18px;" 
+                                ><div class="sb-nav-link-icon"><i class="fas fa-envelope" style="font-size:16px;"></i></div>
+                                Mail</a>
+            @endif
+                        
 
 
 

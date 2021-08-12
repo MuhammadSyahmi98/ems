@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PermissionController;
 
 /*
@@ -74,6 +75,9 @@ Route::group(['middleware'=>['auth', 'has.permission']], function(){
     Route::get('/notice/{id}', [NoticeController::class, 'edit'])->name('notices-edit');
     Route::patch('/notice/{id}', [NoticeController::class, 'update'])->name('notices-update');
     Route::delete('/notice/{id}', [NoticeController::class, 'destroy'])->name('notices-destroy');
+
+    Route::get('/mail', [MailController::class, 'create'])->name('mails-create');
+    Route::post('/mail', [MailController::class, 'store'])->name('mails-store');
 });
 
 
